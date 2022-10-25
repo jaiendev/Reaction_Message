@@ -32,6 +32,7 @@ class ReactionMessage extends StatefulWidget {
   final double? sizeIconReaction;
   final double? emojiSize;
   final IconReactionModel? currentIconReaction;
+  final String? currentIconReaction1;
   const ReactionMessage(
       {Key? key,
       required this.widgetMessage,
@@ -58,7 +59,9 @@ class ReactionMessage extends StatefulWidget {
       // size của emoji khi build lên pageview
       this.emojiSize,
       // icon reaction của tin nhắn
-      this.currentIconReaction})
+      this.currentIconReaction,
+      // icon reaction của tin nhắn dạng String
+      this.currentIconReaction1})
       : super(key: key);
 
   @override
@@ -86,15 +89,17 @@ class _ReactionMessageState extends State<ReactionMessage> {
           //   }
           // });
           setState(() {
-            if (widget.currentIconReaction != iconReactionSelected) {
+            if (widget.currentIconReaction1 !=
+                iconReactionSelected!.iconAsset) {
               iconReaction = iconReactionSelected;
               isReaction = true;
+              widget.handleUpdateIcon!(iconReaction!);
             } else {
               iconReaction = null;
             }
           });
         },
-        currentIconOfMessage: null,
+        currentIconOfMessage: widget.currentIconReaction,
         isTablet: widget.isTablet, //widget.messageModel.iconReactionModel,
         emojiSize: widget.emojiSize,
       ),
