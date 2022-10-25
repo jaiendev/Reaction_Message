@@ -2,7 +2,6 @@ library react_message;
 
 import 'package:flutter/material.dart';
 import 'package:react_message/common/custom_dropdown_button_reaction.dart';
-import 'package:react_message/helpers/sizer_custom/sizer.dart';
 import 'package:react_message/models/icon_reaction_model.dart';
 import 'package:react_message/widgets/reaction_widget.dart';
 
@@ -25,6 +24,7 @@ class ReactionMessage extends StatefulWidget {
   final double? positionBottom;
   final bool isMe;
   final int systemType;
+  final bool isTablet;
   const ReactionMessage(
       {Key? key,
       required this.widgetMessage,
@@ -34,7 +34,8 @@ class ReactionMessage extends StatefulWidget {
       this.positionBottom,
       this.positionRight,
       required this.isMe,
-      required this.systemType})
+      required this.systemType,
+      required this.isTablet})
       : super(key: key);
 
   @override
@@ -52,112 +53,108 @@ class _ReactionMessageState extends State<ReactionMessage> {
     iconReaction = null;
     items = [
       ReactionScreen(
-          onChange: (iconReactionSelected) {
-            // setState(() {
-            //   if (widget.messageModel.iconReactionModel != iconReactionSelected) {
-            //     iconReaction = iconReactionSelected;
-            //     widget.messageModel.iconReactionModel = iconReaction;
-            //   } else {
-            //     widget.messageModel.iconReactionModel = null;
-            //   }
-            // });
-          },
-          currentIconOfMessage: null //widget.messageModel.iconReactionModel,
-          ),
+        onChange: (iconReactionSelected) {
+          // setState(() {
+          //   if (widget.messageModel.iconReactionModel != iconReactionSelected) {
+          //     iconReaction = iconReactionSelected;
+          //     widget.messageModel.iconReactionModel = iconReaction;
+          //   } else {
+          //     widget.messageModel.iconReactionModel = null;
+          //   }
+          // });
+        },
+        currentIconOfMessage: null,
+        isTablet: widget.isTablet, //widget.messageModel.iconReactionModel,
+      ),
     ];
   }
 
   @override
   Widget build(BuildContext context) {
-    return Sizer(
-      builder: (context, orientation, deviceType) {
-        return Container(
-          padding: widget.isReaction
-              ? EdgeInsets.only(bottom: 8.sp)
-              : EdgeInsets.zero,
-          child: Stack(
+    return Container(
+      padding: widget.isReaction
+          ? const EdgeInsets.only(bottom: 8)
+          : EdgeInsets.zero,
+      child: Stack(
+        children: [
+          Row(
+            mainAxisAlignment: MainAxisAlignment.start,
             children: [
-              Row(
-                mainAxisAlignment: MainAxisAlignment.start,
-                children: [
-                  Expanded(
-                    child: widget.widgetMessage,
-                  ),
-                  !widget.isMe &&
-                          (![1, 2, 3, 4, 5, 6].contains(widget.systemType))
-                      ? CustomDropdownButton2Reaction(
-                          dropdownItems: items,
-                          hint: '',
-                          onChanged: (Object? value) {},
-                          value: selectedValue,
-                          icon: Container(
-                            padding: EdgeInsets.all(2.sp),
-                            child: Center(
-                              child: Icon(
-                                Icons.emoji_emotions_outlined,
-                                size: 16.sp,
-                                color: const Color(0xFF9897A0),
-                              ),
-                            ),
-                          ),
-                          buttonPadding: EdgeInsets.zero,
-                          dropdownPadding:
-                              EdgeInsets.only(left: 8.sp, right: 6.sp).add(
-                            EdgeInsets.symmetric(vertical: 8.sp),
-                          ),
-                          itemPadding: EdgeInsets.zero,
-                          valueAlignment: Alignment.center,
-                          buttonWidth: 20.sp,
-                          itemWidth: SizerUtil.isTablet
-                              ? MediaQuery.of(context).size.width / 2
-                              : MediaQuery.of(context).size.width - 40.sp,
-                          itemHeight: 50.sp,
-                          buttonDecoration: BoxDecoration(
-                            borderRadius: BorderRadius.circular(0),
-                            color: Theme.of(context).scaffoldBackgroundColor,
-                          ),
-                        )
-                      : const SizedBox()
-                ],
+              Expanded(
+                child: widget.widgetMessage,
               ),
-              // iconReaction != null
-              //     ? Positioned(
-              //         bottom: widget.positionBottom ?? 0.0,
-              //         right: widget.positionRight ?? 0.0,
-              //         child: Visibility(
-              //           visible: !widget.isMe,
-              //           child: Container(
-              //             padding: EdgeInsets.all(2.4.sp),
-              //             decoration: BoxDecoration(
-              //                 color: Colors.white,
-              //                 shape: BoxShape.circle,
-              //                 boxShadow: [
-              //                   BoxShadow(
-              //                     color: Colors.black.withOpacity(.8),
-              //                     offset: const Offset(0, 1),
-              //                     blurRadius: 0.8,
-              //                   ),
-              //                   BoxShadow(
-              //                     color: Colors.black.withOpacity(.35),
-              //                     offset: const Offset(1, 0),
-              //                     blurRadius: 1,
-              //                   ),
-              //                 ]),
-              //             child: Center(
-              //               child: Image.asset(
-              //                 iconReaction!.iconAsset,
-              //                 width: 13.6.sp,
-              //                 fit: BoxFit.cover,
-              //               ),
-              //             ),
-              //           ),
-              //         ),
-              //       )
-              //     : const SizedBox(),
+              !widget.isMe && (![1, 2, 3, 4, 5, 6].contains(widget.systemType))
+                  ? CustomDropdownButton2Reaction(
+                      dropdownItems: items,
+                      hint: '',
+                      onChanged: (Object? value) {},
+                      value: selectedValue,
+                      icon: Container(
+                        padding: const EdgeInsets.all(2),
+                        child: const Center(
+                          child: Icon(
+                            Icons.emoji_emotions_outlined,
+                            size: 16,
+                            color: Color(0xFF9897A0),
+                          ),
+                        ),
+                      ),
+                      buttonPadding: EdgeInsets.zero,
+                      dropdownPadding:
+                          const EdgeInsets.only(left: 8, right: 6).add(
+                        const EdgeInsets.symmetric(vertical: 8),
+                      ),
+                      itemPadding: EdgeInsets.zero,
+                      valueAlignment: Alignment.center,
+                      buttonWidth: 20,
+                      itemWidth: widget.isTablet
+                          ? MediaQuery.of(context).size.width / 2
+                          : MediaQuery.of(context).size.width - 40,
+                      itemHeight: 50,
+                      buttonDecoration: BoxDecoration(
+                        borderRadius: BorderRadius.circular(0),
+                        color: Theme.of(context).scaffoldBackgroundColor,
+                      ),
+                    )
+                  : const SizedBox()
             ],
           ),
-        );
-      },
+          // iconReaction != null
+          //     ? Positioned(
+          //         bottom: widget.positionBottom ?? 0.0,
+          //         right: widget.positionRight ?? 0.0,
+          //         child: Visibility(
+          //           visible: !widget.isMe,
+          //           child: Container(
+          //             padding: EdgeInsets.all(2.4.sp),
+          //             decoration: BoxDecoration(
+          //                 color: Colors.white,
+          //                 shape: BoxShape.circle,
+          //                 boxShadow: [
+          //                   BoxShadow(
+          //                     color: Colors.black.withOpacity(.8),
+          //                     offset: const Offset(0, 1),
+          //                     blurRadius: 0.8,
+          //                   ),
+          //                   BoxShadow(
+          //                     color: Colors.black.withOpacity(.35),
+          //                     offset: const Offset(1, 0),
+          //                     blurRadius: 1,
+          //                   ),
+          //                 ]),
+          //             child: Center(
+          //               child: Image.asset(
+          //                 iconReaction!.iconAsset,
+          //                 width: 13.6.sp,
+          //                 fit: BoxFit.cover,
+          //               ),
+          //             ),
+          //           ),
+          //         ),
+          //       )
+          //     : const SizedBox(),
+        ],
+      ),
     );
   }
 }

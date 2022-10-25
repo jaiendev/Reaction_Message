@@ -1,6 +1,6 @@
 // Flutter imports:
 import 'package:flutter/material.dart';
-import 'package:react_message/helpers/sizer_custom/sizer.dart';
+
 import 'package:react_message/models/icon_reaction_model.dart';
 import 'package:react_message/widgets/reaction_emoji.dart';
 
@@ -9,8 +9,12 @@ import 'package:react_message/widgets/reaction_emoji.dart';
 class ReactionScreen extends StatefulWidget {
   final Function(IconReactionModel?) onChange;
   final IconReactionModel? currentIconOfMessage;
+  final bool isTablet;
   const ReactionScreen(
-      {Key? key, required this.onChange, this.currentIconOfMessage})
+      {Key? key,
+      required this.onChange,
+      this.currentIconOfMessage,
+      required this.isTablet})
       : super(key: key);
 
   @override
@@ -33,6 +37,7 @@ class _ReactionScreenState extends State<ReactionScreen> {
         },
         listIcon: listFake0,
         currentIconOfMessage: widget.currentIconOfMessage,
+        isTablet: widget.isTablet,
       ),
       ReactionScreen1(
         onChange: (iconReaction) {
@@ -40,6 +45,7 @@ class _ReactionScreenState extends State<ReactionScreen> {
         },
         listIcon: listFake1,
         currentIconOfMessage: widget.currentIconOfMessage,
+        isTablet: widget.isTablet,
       ),
       ReactionScreen1(
         onChange: (iconReaction) {
@@ -47,6 +53,7 @@ class _ReactionScreenState extends State<ReactionScreen> {
         },
         listIcon: listFake2,
         currentIconOfMessage: widget.currentIconOfMessage,
+        isTablet: widget.isTablet,
       ),
     ];
   }
@@ -77,25 +84,25 @@ class _ReactionScreenState extends State<ReactionScreen> {
                 children: listPages,
               ),
             ),
-            SizedBox(
-              height: 10.sp,
+            const SizedBox(
+              height: 10,
             ),
             Row(
               mainAxisAlignment: MainAxisAlignment.center,
               children: List<Widget>.generate(
                 listPages.length,
                 (index) => Padding(
-                  padding: EdgeInsets.symmetric(horizontal: 3.sp),
+                  padding: const EdgeInsets.symmetric(horizontal: 3),
                   child: _currentPage == index
-                      ? Icon(
+                      ? const Icon(
                           Icons.circle,
                           color: Colors.white,
-                          size: 10.sp,
+                          size: 10,
                         )
-                      : Icon(
+                      : const Icon(
                           Icons.circle,
                           color: Colors.grey,
-                          size: 4.sp,
+                          size: 4,
                         ),
                 ),
               ),

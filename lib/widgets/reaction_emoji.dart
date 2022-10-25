@@ -1,6 +1,5 @@
 // Flutter imports:
 import 'package:flutter/material.dart';
-import 'package:react_message/helpers/sizer_custom/sizer.dart';
 import 'package:react_message/models/icon_reaction_model.dart';
 
 // Project imports:
@@ -9,11 +8,13 @@ class ReactionScreen1 extends StatefulWidget {
   final Function(IconReactionModel?) onChange;
   final List<IconReactionModel> listIcon;
   final IconReactionModel? currentIconOfMessage;
+  final bool isTablet;
   const ReactionScreen1(
       {Key? key,
       required this.onChange,
       required this.listIcon,
-      this.currentIconOfMessage})
+      this.currentIconOfMessage,
+      required this.isTablet})
       : super(key: key);
 
   @override
@@ -28,9 +29,9 @@ class _ReactionScreen1State extends State<ReactionScreen1> {
       children: List<Widget>.generate(
         widget.listIcon.length,
         (index) => Padding(
-          padding: SizerUtil.isTablet
-              ? EdgeInsets.symmetric(horizontal: 8.sp)
-              : EdgeInsets.symmetric(horizontal: 3.sp),
+          padding: widget.isTablet
+              ? const EdgeInsets.symmetric(horizontal: 8)
+              : const EdgeInsets.symmetric(horizontal: 3),
           child: GestureDetector(
             onTap: () {
               if (widget.currentIconOfMessage != widget.listIcon[index]) {
@@ -43,8 +44,8 @@ class _ReactionScreen1State extends State<ReactionScreen1> {
             },
             child: Image.asset(
               widget.listIcon[index].iconAsset,
-              width: 30.0.sp,
-              height: 30.0.sp,
+              width: 30.0,
+              height: 30.0,
               fit: BoxFit.contain,
             ),
           ),
