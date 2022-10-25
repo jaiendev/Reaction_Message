@@ -41,6 +41,7 @@ class _ReactionScreen1State extends State<ReactionScreen1> {
               } else {
                 widget.onChange(null);
               }
+              print('Icon Icon: ${widget.listIcon[index]}');
 
               Navigator.of(context).pop();
             },

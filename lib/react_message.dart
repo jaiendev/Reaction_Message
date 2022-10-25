@@ -11,15 +11,11 @@ class Calculator {
   int addOne(int value) => value + 1;
 }
 
-class DucVipPro {
-  int ducAdd(int n) => n + 2;
-}
-
 class ReactionMessage extends StatefulWidget {
   final Widget widgetMessage;
   final EdgeInsetsGeometry? dropdowPadding;
   final bool isReaction;
-  final Function? update;
+  final Function? handleUpdateIcon;
   final double? positionRight;
   final double? positionBottom;
   final double? itemWidth;
@@ -35,13 +31,13 @@ class ReactionMessage extends StatefulWidget {
   final EdgeInsetsGeometry? paddingIconReaction;
   final double? sizeIconReaction;
   final double? emojiSize;
-
+  final IconReactionModel? currentIconReaction;
   const ReactionMessage(
       {Key? key,
       required this.widgetMessage,
       this.dropdowPadding,
       required this.isReaction,
-      this.update,
+      this.handleUpdateIcon,
       this.positionBottom,
       this.positionRight,
       this.itemWidth,
@@ -53,11 +49,16 @@ class ReactionMessage extends StatefulWidget {
       this.buttonIconColor,
       this.buttonIconSize,
       this.buttonDecoration,
+      // padding style cho icon reaction
       this.paddingIconReaction,
+      // kích thước của icon reaction trên tin nhắn khi reaction xong
       this.sizeIconReaction,
+      // thêm size cho icon reaction khi reaction xong
       this.iconReactionDecoration,
       // size của emoji khi build lên pageview
-      this.emojiSize})
+      this.emojiSize,
+      // icon reaction của tin nhắn
+      this.currentIconReaction})
       : super(key: key);
 
   @override
@@ -84,6 +85,11 @@ class _ReactionMessageState extends State<ReactionMessage> {
           //     widget.messageModel.iconReactionModel = null;
           //   }
           // });
+          setState(() {
+            if (widget.currentIconReaction != iconReactionSelected) {
+              iconReaction = iconReactionSelected;
+            }
+          });
         },
         currentIconOfMessage: null,
         isTablet: widget.isTablet, //widget.messageModel.iconReactionModel,
@@ -96,7 +102,7 @@ class _ReactionMessageState extends State<ReactionMessage> {
   Widget build(BuildContext context) {
     return Container(
       padding: widget.isReaction
-          ? const EdgeInsets.only(bottom: 8)
+          ? const EdgeInsets.only(bottom: 10)
           : EdgeInsets.zero,
       child: Stack(
         children: [
@@ -142,42 +148,42 @@ class _ReactionMessageState extends State<ReactionMessage> {
                   : const SizedBox()
             ],
           ),
-          // iconReaction != null
-          //     ?
-          Positioned(
-            bottom: widget.positionBottom ?? 0.0,
-            right: widget.positionRight ?? 0.0,
-            child: Visibility(
-              visible: !widget.isMe,
-              child: Container(
-                padding:
-                    widget.paddingIconReaction ?? const EdgeInsets.all(2.4),
-                decoration: widget.iconReactionDecoration ??
-                    BoxDecoration(
-                        color: Colors.white,
-                        shape: BoxShape.circle,
-                        boxShadow: [
-                          BoxShadow(
-                            color: Colors.black.withOpacity(.8),
-                            offset: const Offset(0, 1),
-                            blurRadius: 0.8,
-                          ),
-                          BoxShadow(
-                            color: Colors.black.withOpacity(.35),
-                            offset: const Offset(1, 0),
-                            blurRadius: 1,
-                          ),
-                        ]),
-                child: Center(
-                  child: Image.asset(
-                    'assets/images/surprise2.png',
-                    width: widget.sizeIconReaction ?? 13.6,
-                    fit: BoxFit.cover,
+          iconReaction != null
+              ? Positioned(
+                  bottom: widget.positionBottom ?? 0.0,
+                  right: widget.positionRight ?? 0.0,
+                  child: Visibility(
+                    visible: !widget.isMe,
+                    child: Container(
+                      padding: widget.paddingIconReaction ??
+                          const EdgeInsets.all(2.4),
+                      decoration: widget.iconReactionDecoration ??
+                          BoxDecoration(
+                              color: Colors.white,
+                              shape: BoxShape.circle,
+                              boxShadow: [
+                                BoxShadow(
+                                  color: Colors.black.withOpacity(.8),
+                                  offset: const Offset(0, 1),
+                                  blurRadius: 0.8,
+                                ),
+                                BoxShadow(
+                                  color: Colors.black.withOpacity(.35),
+                                  offset: const Offset(1, 0),
+                                  blurRadius: 1,
+                                ),
+                              ]),
+                      child: Center(
+                        child: Image.asset(
+                          'assets/images/surprise2.png',
+                          width: widget.sizeIconReaction ?? 13.6,
+                          fit: BoxFit.cover,
+                        ),
+                      ),
+                    ),
                   ),
-                ),
-              ),
-            ),
-          )
+                )
+              : const SizedBox()
         ],
       ),
     );
