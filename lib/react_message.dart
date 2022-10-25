@@ -24,6 +24,7 @@ class ReactionMessage extends StatefulWidget {
   final double? positionBottom;
   final double? itemWidth;
   final double? itemHeight;
+  final double? buttonWidth;
   final bool isMe;
   final int systemType;
   final bool isTablet;
@@ -43,6 +44,7 @@ class ReactionMessage extends StatefulWidget {
       this.positionRight,
       this.itemWidth,
       this.itemHeight,
+      this.buttonWidth,
       required this.isMe,
       required this.systemType,
       required this.isTablet,
@@ -122,7 +124,7 @@ class _ReactionMessageState extends State<ReactionMessage> {
                           ),
                       itemPadding: EdgeInsets.zero,
                       valueAlignment: Alignment.center,
-                      buttonWidth: 20,
+                      buttonWidth: widget.buttonWidth ?? 20,
                       itemWidth: widget.itemWidth ??
                           MediaQuery.of(context).size.width - 50,
                       itemHeight: widget.itemHeight ?? 50,
