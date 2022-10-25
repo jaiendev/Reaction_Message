@@ -12,6 +12,10 @@ class Calculator {
   int addOne(int value) => value + 1;
 }
 
+class DucVipPro {
+  int ducAdd(int n) => n + 2;
+}
+
 class ReactionMessage extends StatefulWidget {
   final Widget widgetMessage;
   final EdgeInsetsGeometry? padding;
