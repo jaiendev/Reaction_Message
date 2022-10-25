@@ -80,9 +80,7 @@ class _ReactionMessageState extends State<ReactionMessage> {
           Row(
             mainAxisAlignment: MainAxisAlignment.start,
             children: [
-              Expanded(
-                child: widget.widgetMessage,
-              ),
+              widget.widgetMessage,
               !widget.isMe && (![1, 2, 3, 4, 5, 6].contains(widget.systemType))
                   ? CustomDropdownButton2Reaction(
                       dropdownItems: items,
