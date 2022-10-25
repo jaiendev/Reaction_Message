@@ -10,11 +10,13 @@ class ReactionScreen extends StatefulWidget {
   final Function(IconReactionModel?) onChange;
   final IconReactionModel? currentIconOfMessage;
   final bool isTablet;
+  final double? emojiSize;
   const ReactionScreen(
       {Key? key,
       required this.onChange,
       this.currentIconOfMessage,
-      required this.isTablet})
+      required this.isTablet,
+      this.emojiSize})
       : super(key: key);
 
   @override
@@ -38,6 +40,7 @@ class _ReactionScreenState extends State<ReactionScreen> {
         listIcon: listFake0,
         currentIconOfMessage: widget.currentIconOfMessage,
         isTablet: widget.isTablet,
+        emojiSize: widget.emojiSize,
       ),
       ReactionScreen1(
         onChange: (iconReaction) {
@@ -46,6 +49,7 @@ class _ReactionScreenState extends State<ReactionScreen> {
         listIcon: listFake1,
         currentIconOfMessage: widget.currentIconOfMessage,
         isTablet: widget.isTablet,
+        emojiSize: widget.emojiSize,
       ),
       ReactionScreen1(
         onChange: (iconReaction) {
@@ -54,6 +58,7 @@ class _ReactionScreenState extends State<ReactionScreen> {
         listIcon: listFake2,
         currentIconOfMessage: widget.currentIconOfMessage,
         isTablet: widget.isTablet,
+        emojiSize: widget.emojiSize,
       ),
     ];
   }

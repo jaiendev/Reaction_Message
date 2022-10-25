@@ -34,6 +34,8 @@ class ReactionMessage extends StatefulWidget {
   final BoxDecoration? iconReactionDecoration;
   final EdgeInsetsGeometry? paddingIconReaction;
   final double? sizeIconReaction;
+  final double? emojiSize;
+
   const ReactionMessage(
       {Key? key,
       required this.widgetMessage,
@@ -53,7 +55,9 @@ class ReactionMessage extends StatefulWidget {
       this.buttonDecoration,
       this.paddingIconReaction,
       this.sizeIconReaction,
-      this.iconReactionDecoration})
+      this.iconReactionDecoration,
+      // size của emoji khi build lên pageview
+      this.emojiSize})
       : super(key: key);
 
   @override
@@ -83,6 +87,7 @@ class _ReactionMessageState extends State<ReactionMessage> {
         },
         currentIconOfMessage: null,
         isTablet: widget.isTablet, //widget.messageModel.iconReactionModel,
+        emojiSize: widget.emojiSize,
       ),
     ];
   }
