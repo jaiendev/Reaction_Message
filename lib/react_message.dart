@@ -79,7 +79,7 @@ class _ReactionMessageState extends State<ReactionMessage> {
     iconReaction = null;
     items = [
       ReactionScreen(
-        onChange: (iconReactionSelected) {
+        onChange: (iconReactionSelected) async {
           setState(() {
             if (widget.currentIconReaction1 !=
                 iconReactionSelected!.iconAsset) {

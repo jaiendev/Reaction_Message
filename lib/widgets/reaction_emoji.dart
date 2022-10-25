@@ -40,8 +40,10 @@ class _ReactionScreen1State extends State<ReactionScreen1> {
             onTap: () {
               if (widget.currentIconOfMessage1 !=
                   widget.listIcon[index].iconAsset) {
+                print('11111111');
                 widget.onChange(widget.listIcon[index]);
               } else {
+                print('22222222');
                 widget.onChange(null);
               }
 
