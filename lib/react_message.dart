@@ -14,8 +14,8 @@ class Calculator {
 class ReactionMessage extends StatefulWidget {
   final Widget widgetMessage;
   final EdgeInsetsGeometry? dropdowPadding;
-  final bool isReaction;
-  final Function? handleUpdateIcon;
+  final bool? isReaction;
+  final Function(IconReactionModel)? handleUpdateIcon;
   final double? positionRight;
   final double? positionBottom;
   final double? itemWidth;
@@ -36,7 +36,7 @@ class ReactionMessage extends StatefulWidget {
       {Key? key,
       required this.widgetMessage,
       this.dropdowPadding,
-      required this.isReaction,
+      this.isReaction,
       this.handleUpdateIcon,
       this.positionBottom,
       this.positionRight,
@@ -69,7 +69,7 @@ class _ReactionMessageState extends State<ReactionMessage> {
   late IconReactionModel? iconReaction;
   String? selectedValue;
   List<Widget> items = [];
-
+  bool isReaction = false;
   @override
   void initState() {
     super.initState();
@@ -88,6 +88,9 @@ class _ReactionMessageState extends State<ReactionMessage> {
           setState(() {
             if (widget.currentIconReaction != iconReactionSelected) {
               iconReaction = iconReactionSelected;
+              isReaction = true;
+            } else {
+              iconReaction = null;
             }
           });
         },
@@ -101,9 +104,8 @@ class _ReactionMessageState extends State<ReactionMessage> {
   @override
   Widget build(BuildContext context) {
     return Container(
-      padding: widget.isReaction
-          ? const EdgeInsets.only(bottom: 10)
-          : EdgeInsets.zero,
+      padding:
+          isReaction ? const EdgeInsets.only(bottom: 10.8) : EdgeInsets.zero,
       child: Stack(
         children: [
           Row(
