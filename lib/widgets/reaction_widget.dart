@@ -43,6 +43,7 @@ class _ReactionScreenState extends State<ReactionScreen> {
         currentIconOfMessage: widget.currentIconOfMessage,
         isTablet: widget.isTablet,
         emojiSize: widget.emojiSize,
+        currentIconOfMessage1: widget.currentIconOfMessage1,
       ),
       ReactionScreen1(
         onChange: (iconReaction) {
@@ -52,6 +53,7 @@ class _ReactionScreenState extends State<ReactionScreen> {
         currentIconOfMessage: widget.currentIconOfMessage,
         isTablet: widget.isTablet,
         emojiSize: widget.emojiSize,
+        currentIconOfMessage1: widget.currentIconOfMessage1,
       ),
       ReactionScreen1(
         onChange: (iconReaction) {
@@ -61,6 +63,7 @@ class _ReactionScreenState extends State<ReactionScreen> {
         currentIconOfMessage: widget.currentIconOfMessage,
         isTablet: widget.isTablet,
         emojiSize: widget.emojiSize,
+        currentIconOfMessage1: widget.currentIconOfMessage1,
       ),
     ];
   }
