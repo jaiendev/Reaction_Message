@@ -15,7 +15,7 @@ class ReactionMessage extends StatefulWidget {
   final Widget widgetMessage;
   final EdgeInsetsGeometry? dropdowPadding;
   final bool? isReaction;
-  final Function(IconReactionModel)? handleUpdateIcon;
+  final Function(IconReactionModel?)? handleUpdateIcon;
   final double? positionRight;
   final double? positionBottom;
   final double? itemWidth;
@@ -93,7 +93,7 @@ class _ReactionMessageState extends State<ReactionMessage> {
                 iconReactionSelected!.iconAsset) {
               iconReaction = iconReactionSelected;
               isReaction = true;
-              widget.handleUpdateIcon!(iconReaction!);
+              widget.handleUpdateIcon!(iconReaction);
             } else {
               iconReaction = null;
             }
