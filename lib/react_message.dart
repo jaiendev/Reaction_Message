@@ -17,25 +17,41 @@ class DucVipPro {
 
 class ReactionMessage extends StatefulWidget {
   final Widget widgetMessage;
-  final EdgeInsetsGeometry? padding;
+  final EdgeInsetsGeometry? dropdowPadding;
   final bool isReaction;
   final Function? update;
   final double? positionRight;
   final double? positionBottom;
+  final double? itemWidth;
+  final double? itemHeight;
   final bool isMe;
   final int systemType;
   final bool isTablet;
+  final Color? buttonIconColor;
+  final double? buttonIconSize;
+  final BoxDecoration? buttonDecoration;
+  final BoxDecoration? iconReactionDecoration;
+  final EdgeInsetsGeometry? paddingIconReaction;
+  final double? sizeIconReaction;
   const ReactionMessage(
       {Key? key,
       required this.widgetMessage,
-      this.padding,
+      this.dropdowPadding,
       required this.isReaction,
       this.update,
       this.positionBottom,
       this.positionRight,
+      this.itemWidth,
+      this.itemHeight,
       required this.isMe,
       required this.systemType,
-      required this.isTablet})
+      required this.isTablet,
+      this.buttonIconColor,
+      this.buttonIconSize,
+      this.buttonDecoration,
+      this.paddingIconReaction,
+      this.sizeIconReaction,
+      this.iconReactionDecoration})
       : super(key: key);
 
   @override
@@ -79,6 +95,7 @@ class _ReactionMessageState extends State<ReactionMessage> {
         children: [
           Row(
             mainAxisAlignment: MainAxisAlignment.start,
+            crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               widget.widgetMessage,
               !widget.isMe && (![1, 2, 3, 4, 5, 6].contains(widget.systemType))
@@ -89,68 +106,71 @@ class _ReactionMessageState extends State<ReactionMessage> {
                       value: selectedValue,
                       icon: Container(
                         padding: const EdgeInsets.all(2),
-                        child: const Center(
+                        child: Center(
                           child: Icon(
                             Icons.emoji_emotions_outlined,
-                            size: 16,
-                            color: Color(0xFF9897A0),
+                            size: widget.buttonIconSize ?? 16.0,
+                            color: widget.buttonIconColor ??
+                                const Color(0xFF9897A0),
                           ),
                         ),
                       ),
                       buttonPadding: EdgeInsets.zero,
-                      dropdownPadding:
+                      dropdownPadding: widget.dropdowPadding ??
                           const EdgeInsets.only(left: 8, right: 6).add(
-                        const EdgeInsets.symmetric(vertical: 8),
-                      ),
+                            const EdgeInsets.symmetric(vertical: 8),
+                          ),
                       itemPadding: EdgeInsets.zero,
                       valueAlignment: Alignment.center,
                       buttonWidth: 20,
-                      itemWidth: widget.isTablet
-                          ? MediaQuery.of(context).size.width / 2
-                          : MediaQuery.of(context).size.width - 40,
-                      itemHeight: 50,
-                      buttonDecoration: BoxDecoration(
-                        borderRadius: BorderRadius.circular(0),
-                        color: Theme.of(context).scaffoldBackgroundColor,
-                      ),
+                      itemWidth: widget.itemWidth ??
+                          MediaQuery.of(context).size.width - 50,
+                      itemHeight: widget.itemHeight ?? 50,
+                      buttonDecoration: widget.buttonDecoration ??
+                          BoxDecoration(
+                            borderRadius: BorderRadius.circular(0),
+                            color: Theme.of(context).scaffoldBackgroundColor,
+                          ),
                     )
                   : const SizedBox()
             ],
           ),
           // iconReaction != null
-          //     ? Positioned(
-          //         bottom: widget.positionBottom ?? 0.0,
-          //         right: widget.positionRight ?? 0.0,
-          //         child: Visibility(
-          //           visible: !widget.isMe,
-          //           child: Container(
-          //             padding: EdgeInsets.all(2.4.sp),
-          //             decoration: BoxDecoration(
-          //                 color: Colors.white,
-          //                 shape: BoxShape.circle,
-          //                 boxShadow: [
-          //                   BoxShadow(
-          //                     color: Colors.black.withOpacity(.8),
-          //                     offset: const Offset(0, 1),
-          //                     blurRadius: 0.8,
-          //                   ),
-          //                   BoxShadow(
-          //                     color: Colors.black.withOpacity(.35),
-          //                     offset: const Offset(1, 0),
-          //                     blurRadius: 1,
-          //                   ),
-          //                 ]),
-          //             child: Center(
-          //               child: Image.asset(
-          //                 iconReaction!.iconAsset,
-          //                 width: 13.6.sp,
-          //                 fit: BoxFit.cover,
-          //               ),
-          //             ),
-          //           ),
-          //         ),
-          //       )
-          //     : const SizedBox(),
+          //     ?
+          Positioned(
+            bottom: widget.positionBottom ?? 0.0,
+            right: widget.positionRight ?? 0.0,
+            child: Visibility(
+              visible: !widget.isMe,
+              child: Container(
+                padding:
+                    widget.paddingIconReaction ?? const EdgeInsets.all(2.4),
+                decoration: widget.iconReactionDecoration ??
+                    BoxDecoration(
+                        color: Colors.white,
+                        shape: BoxShape.circle,
+                        boxShadow: [
+                          BoxShadow(
+                            color: Colors.black.withOpacity(.8),
+                            offset: const Offset(0, 1),
+                            blurRadius: 0.8,
+                          ),
+                          BoxShadow(
+                            color: Colors.black.withOpacity(.35),
+                            offset: const Offset(1, 0),
+                            blurRadius: 1,
+                          ),
+                        ]),
+                child: Center(
+                  child: Image.asset(
+                    iconReaction!.iconAsset,
+                    width: widget.sizeIconReaction ?? 13.6,
+                    fit: BoxFit.cover,
+                  ),
+                ),
+              ),
+            ),
+          )
         ],
       ),
     );
