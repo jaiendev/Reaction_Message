@@ -9,12 +9,14 @@ class ReactionScreen1 extends StatefulWidget {
   final List<IconReactionModel> listIcon;
   final IconReactionModel? currentIconOfMessage;
   final bool isTablet;
+  final double? emojiSize;
   const ReactionScreen1(
       {Key? key,
       required this.onChange,
       required this.listIcon,
       this.currentIconOfMessage,
-      required this.isTablet})
+      required this.isTablet,
+      this.emojiSize})
       : super(key: key);
 
   @override
@@ -44,8 +46,8 @@ class _ReactionScreen1State extends State<ReactionScreen1> {
             },
             child: Image.asset(
               widget.listIcon[index].iconAsset,
-              width: 30.0,
-              height: 30.0,
+              width: widget.emojiSize ?? 30.0,
+              height: widget.emojiSize ?? 30.0,
               fit: BoxFit.contain,
             ),
           ),
