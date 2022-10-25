@@ -9,6 +9,7 @@ import 'package:react_message/widgets/reaction_emoji.dart';
 class ReactionScreen extends StatefulWidget {
   final Function(IconReactionModel?) onChange;
   final IconReactionModel? currentIconOfMessage;
+  final String? currentIconOfMessage1;
   final bool isTablet;
   final double? emojiSize;
   const ReactionScreen(
@@ -16,7 +17,8 @@ class ReactionScreen extends StatefulWidget {
       required this.onChange,
       this.currentIconOfMessage,
       required this.isTablet,
-      this.emojiSize})
+      this.emojiSize,
+      this.currentIconOfMessage1})
       : super(key: key);
 
   @override

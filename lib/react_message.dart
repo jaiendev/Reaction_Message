@@ -80,14 +80,6 @@ class _ReactionMessageState extends State<ReactionMessage> {
     items = [
       ReactionScreen(
         onChange: (iconReactionSelected) {
-          // setState(() {
-          //   if (widget.messageModel.iconReactionModel != iconReactionSelected) {
-          //     iconReaction = iconReactionSelected;
-          //     widget.messageModel.iconReactionModel = iconReaction;
-          //   } else {
-          //     widget.messageModel.iconReactionModel = null;
-          //   }
-          // });
           setState(() {
             if (widget.currentIconReaction1 !=
                 iconReactionSelected!.iconAsset) {
@@ -96,10 +88,12 @@ class _ReactionMessageState extends State<ReactionMessage> {
               widget.handleUpdateIcon!(iconReaction);
             } else {
               iconReaction = null;
+              widget.handleUpdateIcon!(iconReaction);
             }
           });
         },
         currentIconOfMessage: widget.currentIconReaction,
+        currentIconOfMessage1: widget.currentIconReaction1,
         isTablet: widget.isTablet, //widget.messageModel.iconReactionModel,
         emojiSize: widget.emojiSize,
       ),

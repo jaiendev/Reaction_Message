@@ -10,13 +10,15 @@ class ReactionScreen1 extends StatefulWidget {
   final IconReactionModel? currentIconOfMessage;
   final bool isTablet;
   final double? emojiSize;
+  final String? currentIconOfMessage1;
   const ReactionScreen1(
       {Key? key,
       required this.onChange,
       required this.listIcon,
       this.currentIconOfMessage,
       required this.isTablet,
-      this.emojiSize})
+      this.emojiSize,
+      this.currentIconOfMessage1})
       : super(key: key);
 
   @override
@@ -36,12 +38,12 @@ class _ReactionScreen1State extends State<ReactionScreen1> {
               : const EdgeInsets.symmetric(horizontal: 3),
           child: GestureDetector(
             onTap: () {
-              if (widget.currentIconOfMessage != widget.listIcon[index]) {
+              if (widget.currentIconOfMessage1 !=
+                  widget.listIcon[index].iconAsset) {
                 widget.onChange(widget.listIcon[index]);
               } else {
                 widget.onChange(null);
               }
-              print('Icon Icon: ${widget.listIcon[index]}');
 
               Navigator.of(context).pop();
             },
