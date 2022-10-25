@@ -163,7 +163,7 @@ class _ReactionMessageState extends State<ReactionMessage> {
                         ]),
                 child: Center(
                   child: Image.asset(
-                    iconReaction!.iconAsset,
+                    'assets/images/surprise2.png',
                     width: widget.sizeIconReaction ?? 13.6,
                     fit: BoxFit.cover,
                   ),
