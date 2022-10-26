@@ -90,14 +90,14 @@ class _ReactionMessageState extends State<ReactionMessage> {
                     widget.currentIconReaction1.toString());
                 iconReaction = iconReactionSelected;
                 isReaction = true;
-                widget.handleUpdateIcon!(iconReaction);
+                widget.handleUpdateIcon!(iconReactionSelected);
               } else {
                 print('bang bang bang ' +
                     iconReactionSelected.iconAsset.toString() +
                     ' ' +
                     widget.currentIconReaction1.toString());
                 iconReaction = null;
-                // widget.handleUpdateIcon!(iconReaction);
+                widget.handleUpdateIcon!(iconReactionSelected);
               }
             }
           });
