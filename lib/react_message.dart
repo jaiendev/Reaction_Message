@@ -124,7 +124,9 @@ class _ReactionMessageState extends State<ReactionMessage> {
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               widget.widgetMessage,
-              !widget.isMe && (![1, 2, 3, 4, 5, 6].contains(widget.systemType))
+              !widget.isMe &&
+                      (![1, 2, 3, 4, 5, 6].contains(widget.systemType)) &&
+                      !widget.isDeleteMessage
                   ? CustomDropdownButton2Reaction(
                       dropdownItems: items,
                       hint: '',
@@ -161,7 +163,7 @@ class _ReactionMessageState extends State<ReactionMessage> {
                   : const SizedBox()
             ],
           ),
-          (iconReaction != null && widget.isDeleteMessage == true)
+          iconReaction != null
               ? Positioned(
                   bottom: widget.positionBottom ?? 0.0,
                   right: widget.positionRight ?? 0.0,
