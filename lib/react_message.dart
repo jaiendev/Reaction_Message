@@ -79,6 +79,7 @@ class _ReactionMessageState extends State<ReactionMessage> {
     if (widget.currentIconReaction1 != null) {
       iconReaction = IconReactionModel(
           id: 1, iconAsset: widget.currentIconReaction1!, page: 0);
+      isReaction = true;
     } else {
       iconReaction = null;
     }
