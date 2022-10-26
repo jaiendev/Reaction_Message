@@ -76,7 +76,8 @@ class _ReactionMessageState extends State<ReactionMessage> {
   @override
   void initState() {
     super.initState();
-    iconReaction = null;
+    iconReaction = IconReactionModel(
+        id: 1, iconAsset: widget.currentIconReaction1!, page: 0);
     items = [
       ReactionScreen(
         onChange: (iconReactionSelected) async {
