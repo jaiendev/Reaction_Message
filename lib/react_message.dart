@@ -161,7 +161,7 @@ class _ReactionMessageState extends State<ReactionMessage> {
                   : const SizedBox()
             ],
           ),
-          (iconReaction != null && widget.isDeleteMessage)
+          (iconReaction != null && widget.isDeleteMessage == true)
               ? Positioned(
                   bottom: widget.positionBottom ?? 0.0,
                   right: widget.positionRight ?? 0.0,
