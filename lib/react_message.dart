@@ -90,7 +90,7 @@ class _ReactionMessageState extends State<ReactionMessage> {
             } else {
               print('bang bang bang');
               iconReaction = null;
-              widget.handleUpdateIcon!(iconReaction);
+              // widget.handleUpdateIcon!(iconReaction);
             }
           });
         },
