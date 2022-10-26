@@ -81,22 +81,24 @@ class _ReactionMessageState extends State<ReactionMessage> {
       ReactionScreen(
         onChange: (iconReactionSelected) async {
           setState(() {
-            if (widget.currentIconReaction1 !=
-                iconReactionSelected!.iconAsset) {
-              print('khong ban sss ' +
-                  iconReactionSelected.iconAsset.toString() +
-                  ' ' +
-                  widget.currentIconReaction1.toString());
-              iconReaction = iconReactionSelected;
-              isReaction = true;
-              widget.handleUpdateIcon!(iconReaction);
-            } else {
-              print('bang bang bang ' +
-                  iconReactionSelected.iconAsset.toString() +
-                  ' ' +
-                  widget.currentIconReaction1.toString());
-              iconReaction = null;
-              // widget.handleUpdateIcon!(iconReaction);
+            if (iconReactionSelected != null) {
+              if (widget.currentIconReaction1 !=
+                  iconReactionSelected.iconAsset) {
+                print('khong ban sss ' +
+                    iconReactionSelected.iconAsset.toString() +
+                    ' ' +
+                    widget.currentIconReaction1.toString());
+                iconReaction = iconReactionSelected;
+                isReaction = true;
+                widget.handleUpdateIcon!(iconReaction);
+              } else {
+                print('bang bang bang ' +
+                    iconReactionSelected.iconAsset.toString() +
+                    ' ' +
+                    widget.currentIconReaction1.toString());
+                iconReaction = null;
+                // widget.handleUpdateIcon!(iconReaction);
+              }
             }
           });
         },
