@@ -84,19 +84,12 @@ class _ReactionMessageState extends State<ReactionMessage> {
             if (iconReactionSelected != null) {
               if (widget.currentIconReaction1 !=
                   iconReactionSelected.iconAsset) {
-                print('khong ban sss ' +
-                    iconReactionSelected.iconAsset.toString() +
-                    ' ' +
-                    widget.currentIconReaction1.toString());
                 iconReaction = iconReactionSelected;
                 isReaction = true;
                 widget.handleUpdateIcon!(iconReactionSelected);
               } else {
-                print('bang bang bang ' +
-                    iconReactionSelected.iconAsset.toString() +
-                    ' ' +
-                    widget.currentIconReaction1.toString());
                 iconReaction = null;
+                isReaction = false;
                 widget.handleUpdateIcon!(iconReactionSelected);
               }
             }
