@@ -90,7 +90,6 @@ class _ReactionMessageState extends State<ReactionMessage> {
               } else {
                 iconReaction = null;
                 isReaction = false;
-                widget.handleUpdateIcon!(iconReactionSelected);
               }
             }
           });
