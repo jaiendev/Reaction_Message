@@ -33,6 +33,8 @@ class ReactionMessage extends StatefulWidget {
   final double? emojiSize;
   final IconReactionModel? currentIconReaction;
   final String? currentIconReaction1;
+  final bool isDeleteMessage;
+
   const ReactionMessage(
       {Key? key,
       required this.widgetMessage,
@@ -47,6 +49,7 @@ class ReactionMessage extends StatefulWidget {
       required this.isMe,
       required this.systemType,
       required this.isTablet,
+      required this.isDeleteMessage,
       this.buttonIconColor,
       this.buttonIconSize,
       this.buttonDecoration,
@@ -158,7 +161,7 @@ class _ReactionMessageState extends State<ReactionMessage> {
                   : const SizedBox()
             ],
           ),
-          iconReaction != null
+          (iconReaction != null && widget.isDeleteMessage)
               ? Positioned(
                   bottom: widget.positionBottom ?? 0.0,
                   right: widget.positionRight ?? 0.0,
