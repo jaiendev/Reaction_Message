@@ -37,7 +37,7 @@ class _ReactionScreenState extends State<ReactionScreen> {
     listPages = [
       ReactionScreen1(
         onChange: (iconReaction) {
-          widget.onChange(iconReaction);
+          widget.onChange(iconReaction!);
         },
         listIcon: listFake0,
         currentIconOfMessage: widget.currentIconOfMessage,
@@ -47,7 +47,7 @@ class _ReactionScreenState extends State<ReactionScreen> {
       ),
       ReactionScreen1(
         onChange: (iconReaction) {
-          widget.onChange(iconReaction);
+          widget.onChange(iconReaction!);
         },
         listIcon: listFake1,
         currentIconOfMessage: widget.currentIconOfMessage,
@@ -57,7 +57,7 @@ class _ReactionScreenState extends State<ReactionScreen> {
       ),
       ReactionScreen1(
         onChange: (iconReaction) {
-          widget.onChange(iconReaction);
+          widget.onChange(iconReaction!);
         },
         listIcon: listFake2,
         currentIconOfMessage: widget.currentIconOfMessage,
