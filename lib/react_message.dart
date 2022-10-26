@@ -76,7 +76,8 @@ class _ReactionMessageState extends State<ReactionMessage> {
   @override
   void initState() {
     super.initState();
-    if (widget.currentIconReaction1 != null) {
+    if (widget.currentIconReaction1 != null &&
+        widget.currentIconReaction1 != 'none') {
       iconReaction = IconReactionModel(
           id: 1, iconAsset: widget.currentIconReaction1!, page: 0);
       isReaction = true;
@@ -86,20 +87,19 @@ class _ReactionMessageState extends State<ReactionMessage> {
     items = [
       ReactionScreen(
         onChange: (iconReactionSelected) async {
-          setState(() {
-            if (iconReactionSelected != null) {
-              if (widget.currentIconReaction1 !=
-                  iconReactionSelected.iconAsset) {
-                iconReaction = iconReactionSelected;
-                isReaction = true;
-                widget.handleUpdateIcon!(iconReactionSelected);
-              } else {
-                iconReaction = null;
-                isReaction = false;
-                widget.handleUpdateIcon!(null);
-              }
+          if (iconReactionSelected != null) {
+            if (widget.currentIconReaction1 != iconReactionSelected.iconAsset) {
+              iconReaction = iconReactionSelected;
+              isReaction = true;
+              widget.handleUpdateIcon!(iconReactionSelected);
+              setState(() {});
+            } else {
+              iconReaction = null;
+              isReaction = false;
+              widget.handleUpdateIcon!(null);
+              setState(() {});
             }
-          });
+          }
         },
         currentIconOfMessage: widget.currentIconReaction,
         currentIconOfMessage1: widget.currentIconReaction1,
