@@ -78,7 +78,7 @@ class _ReactionMessageState extends State<ReactionMessage>
   List<Widget> items = [];
   bool isReaction = false;
   late AnimationController _controller;
-
+  late Offset _beginOffset;
   @override
   void initState() {
     super.initState();
@@ -86,6 +86,7 @@ class _ReactionMessageState extends State<ReactionMessage>
       duration: const Duration(seconds: 1),
       vsync: this,
     );
+    _beginOffset = const Offset(0.0, 0.0);
     if (widget.currentIconReaction1 != null &&
         widget.currentIconReaction1 != 'none') {
       iconReaction = IconReactionModel(
@@ -102,16 +103,17 @@ class _ReactionMessageState extends State<ReactionMessage>
           _controller.reset();
           if (iconReactionSelected != null) {
             if (widget.currentIconReaction1 != iconReactionSelected.iconAsset) {
+              _beginOffset = const Offset(0.0, -1);
               iconReaction = iconReactionSelected;
               isReaction = true;
               widget.handleUpdateIcon!(iconReactionSelected);
               _controller.forward();
               setState(() {});
             } else {
+              _beginOffset = const Offset(0.0, 0.0);
               iconReaction = null;
               isReaction = false;
               widget.handleUpdateIcon!(null);
-
               setState(() {});
             }
           }
@@ -183,7 +185,7 @@ class _ReactionMessageState extends State<ReactionMessage>
                     visible: !widget.isMe,
                     child: SlideTransition(
                       position: Tween<Offset>(
-                        begin: const Offset(0.0, -1),
+                        begin: _beginOffset,
                         end: Offset.zero,
                       ).animate(CurvedAnimation(
                         parent: _controller,
