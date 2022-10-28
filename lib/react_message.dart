@@ -178,7 +178,7 @@ class _ReactionMessageState extends State<ReactionMessage>
                     visible: !widget.isMe,
                     child: SlideTransition(
                       position: Tween<Offset>(
-                        begin: const Offset(0.0, 0.0),
+                        begin: const Offset(0.0, -1),
                         end: Offset.zero,
                       ).animate(CurvedAnimation(
                         parent: _controller,
