@@ -97,6 +97,7 @@ class _ReactionMessageState extends State<ReactionMessage>
     items = [
       ReactionScreen(
         onChange: (iconReactionSelected) async {
+          _controller.reset();
           if (iconReactionSelected != null) {
             if (widget.currentIconReaction1 != iconReactionSelected.iconAsset) {
               iconReaction = iconReactionSelected;
@@ -108,6 +109,7 @@ class _ReactionMessageState extends State<ReactionMessage>
               iconReaction = null;
               isReaction = false;
               widget.handleUpdateIcon!(null);
+
               setState(() {});
             }
           }
