@@ -78,9 +78,11 @@ class _ReactionMessageState extends State<ReactionMessage>
   List<Widget> items = [];
   bool isReaction = false;
   late AnimationController _controller;
+  late Offset _beginOffset;
   @override
   void initState() {
     super.initState();
+    _beginOffset = const Offset(0.0, 0.0);
     _controller = AnimationController(
       duration: const Duration(seconds: 1),
       vsync: this,
@@ -101,6 +103,7 @@ class _ReactionMessageState extends State<ReactionMessage>
           _controller.reset();
           if (iconReactionSelected != null) {
             if (widget.currentIconReaction1 != iconReactionSelected.iconAsset) {
+              _beginOffset = const Offset(0.0, -1.0);
               iconReaction = iconReactionSelected;
               isReaction = true;
               widget.handleUpdateIcon!(iconReactionSelected);
@@ -110,7 +113,7 @@ class _ReactionMessageState extends State<ReactionMessage>
               iconReaction = null;
               isReaction = false;
               widget.handleUpdateIcon!(null);
-
+              _beginOffset = const Offset(0.0, 0.0);
               setState(() {});
             }
           }
@@ -126,6 +129,7 @@ class _ReactionMessageState extends State<ReactionMessage>
   @override
   Widget build(BuildContext context) {
     return Container(
+      width: MediaQuery.of(context).size.width,
       padding:
           isReaction ? const EdgeInsets.only(bottom: 10.8) : EdgeInsets.zero,
       child: Stack(
@@ -182,7 +186,7 @@ class _ReactionMessageState extends State<ReactionMessage>
                     visible: !widget.isMe,
                     child: SlideTransition(
                       position: Tween<Offset>(
-                        begin: const Offset(0.0, -1),
+                        begin: _beginOffset,
                         end: Offset.zero,
                       ).animate(CurvedAnimation(
                         parent: _controller,
