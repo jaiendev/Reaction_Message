@@ -133,50 +133,50 @@ class _ReactionMessageState extends State<ReactionMessage>
           isReaction ? const EdgeInsets.only(bottom: 10.8) : EdgeInsets.zero,
       child: Stack(
         children: [
-          widget.widgetMessage,
-          // Row(
-          //   mainAxisAlignment: MainAxisAlignment.start,
-          //   crossAxisAlignment: CrossAxisAlignment.start,
-          //   children: [
-          //     !widget.isMe &&
-          //             (![1, 2, 3, 4, 5, 6].contains(widget.systemType)) &&
-          //             !widget.isDeleteMessage
-          //         ? CustomDropdownButton2Reaction(
-          //             dropdownItems: items,
-          //             hint: '',
-          //             onChanged: (Object? value) {},
-          //             value: selectedValue,
-          //             icon: Container(
-          //               padding: const EdgeInsets.all(2),
-          //               child: Center(
-          //                 child: Icon(
-          //                   Icons.emoji_emotions_outlined,
-          //                   size: widget.buttonIconSize ?? 16.0,
-          //                   color: widget.buttonIconColor ??
-          //                       const Color(0xFF9897A0),
-          //                 ),
-          //               ),
-          //             ),
-          //             buttonPadding: EdgeInsets.zero,
-          //             dropdownPadding: widget.dropdowPadding ??
-          //                 const EdgeInsets.only(left: 8, right: 6).add(
-          //                   const EdgeInsets.symmetric(vertical: 8),
-          //                 ),
-          //             itemPadding: EdgeInsets.zero,
-          //             valueAlignment: Alignment.center,
-          //             buttonWidth: widget.buttonWidth ?? 20,
-          //             itemWidth: widget.itemWidth ??
-          //                 MediaQuery.of(context).size.width - 50,
-          //             itemHeight: widget.itemHeight ?? 50,
-          //             buttonDecoration: widget.buttonDecoration ??
-          //                 BoxDecoration(
-          //                   borderRadius: BorderRadius.circular(0),
-          //                   color: Theme.of(context).scaffoldBackgroundColor,
-          //                 ),
-          //           )
-          //         : const SizedBox()
-          //   ],
-          // ),
+          Row(
+            mainAxisAlignment: MainAxisAlignment.start,
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              widget.widgetMessage,
+              !widget.isMe &&
+                      (![1, 2, 3, 4, 5, 6].contains(widget.systemType)) &&
+                      !widget.isDeleteMessage
+                  ? CustomDropdownButton2Reaction(
+                      dropdownItems: items,
+                      hint: '',
+                      onChanged: (Object? value) {},
+                      value: selectedValue,
+                      icon: Container(
+                        padding: const EdgeInsets.all(2),
+                        child: Center(
+                          child: Icon(
+                            Icons.emoji_emotions_outlined,
+                            size: widget.buttonIconSize ?? 16.0,
+                            color: widget.buttonIconColor ??
+                                const Color(0xFF9897A0),
+                          ),
+                        ),
+                      ),
+                      buttonPadding: EdgeInsets.zero,
+                      dropdownPadding: widget.dropdowPadding ??
+                          const EdgeInsets.only(left: 8, right: 6).add(
+                            const EdgeInsets.symmetric(vertical: 8),
+                          ),
+                      itemPadding: EdgeInsets.zero,
+                      valueAlignment: Alignment.center,
+                      buttonWidth: widget.buttonWidth ?? 20,
+                      itemWidth: widget.itemWidth ??
+                          MediaQuery.of(context).size.width - 50,
+                      itemHeight: widget.itemHeight ?? 50,
+                      buttonDecoration: widget.buttonDecoration ??
+                          BoxDecoration(
+                            borderRadius: BorderRadius.circular(0),
+                            color: Theme.of(context).scaffoldBackgroundColor,
+                          ),
+                    )
+                  : const SizedBox()
+            ],
+          ),
           (iconReaction != null && !widget.isDeleteMessage)
               ? Positioned(
                   bottom: widget.positionBottom ?? 0.0,
