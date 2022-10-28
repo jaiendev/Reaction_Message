@@ -183,7 +183,7 @@ class _ReactionMessageState extends State<ReactionMessage>
                       ).animate(CurvedAnimation(
                         parent: _controller,
                         curve: Curves.bounceOut,
-                      )),
+                      )..curve),
                       child: Container(
                         padding: widget.paddingIconReaction ??
                             const EdgeInsets.all(2.4),
