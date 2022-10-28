@@ -102,11 +102,13 @@ class _ReactionMessageState extends State<ReactionMessage>
               iconReaction = iconReactionSelected;
               isReaction = true;
               widget.handleUpdateIcon!(iconReactionSelected);
+              _controller.forward();
               setState(() {});
             } else {
               iconReaction = null;
               isReaction = false;
               widget.handleUpdateIcon!(null);
+              _controller.forward();
               setState(() {});
             }
           }
