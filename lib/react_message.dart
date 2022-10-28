@@ -103,7 +103,7 @@ class _ReactionMessageState extends State<ReactionMessage>
           _controller.reset();
           if (iconReactionSelected != null) {
             if (widget.currentIconReaction1 != iconReactionSelected.iconAsset) {
-              _beginOffset = const Offset(0.0, -1.0);
+              _beginOffset = const Offset(0.0, -1);
               iconReaction = iconReactionSelected;
               isReaction = true;
               widget.handleUpdateIcon!(iconReactionSelected);
