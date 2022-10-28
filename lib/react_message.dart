@@ -81,6 +81,10 @@ class _ReactionMessageState extends State<ReactionMessage>
   @override
   void initState() {
     super.initState();
+    _controller = AnimationController(
+      duration: const Duration(seconds: 1),
+      vsync: this,
+    );
     if (widget.currentIconReaction1 != null &&
         widget.currentIconReaction1 != 'none') {
       iconReaction = IconReactionModel(
@@ -90,10 +94,6 @@ class _ReactionMessageState extends State<ReactionMessage>
     } else {
       iconReaction = null;
     }
-    _controller = AnimationController(
-      duration: const Duration(seconds: 1),
-      vsync: this,
-    );
 
     items = [
       ReactionScreen(
