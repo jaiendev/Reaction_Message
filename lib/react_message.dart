@@ -108,7 +108,6 @@ class _ReactionMessageState extends State<ReactionMessage>
               iconReaction = null;
               isReaction = false;
               widget.handleUpdateIcon!(null);
-              _controller.forward();
               setState(() {});
             }
           }
