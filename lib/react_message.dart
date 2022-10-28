@@ -71,11 +71,13 @@ class ReactionMessage extends StatefulWidget {
   State<ReactionMessage> createState() => _ReactionMessageState();
 }
 
-class _ReactionMessageState extends State<ReactionMessage> {
+class _ReactionMessageState extends State<ReactionMessage>
+    with TickerProviderStateMixin {
   late IconReactionModel? iconReaction;
   String? selectedValue;
   List<Widget> items = [];
   bool isReaction = false;
+  late AnimationController _controller;
   @override
   void initState() {
     super.initState();
@@ -87,6 +89,11 @@ class _ReactionMessageState extends State<ReactionMessage> {
     } else {
       iconReaction = null;
     }
+    _controller = AnimationController(
+      duration: const Duration(seconds: 1),
+      vsync: this,
+    );
+
     items = [
       ReactionScreen(
         onChange: (iconReactionSelected) async {
@@ -169,30 +176,39 @@ class _ReactionMessageState extends State<ReactionMessage> {
                   right: widget.positionRight ?? 0.0,
                   child: Visibility(
                     visible: !widget.isMe,
-                    child: Container(
-                      padding: widget.paddingIconReaction ??
-                          const EdgeInsets.all(2.4),
-                      decoration: widget.iconReactionDecoration ??
-                          BoxDecoration(
-                              color: Colors.white,
-                              shape: BoxShape.circle,
-                              boxShadow: [
-                                BoxShadow(
-                                  color: Colors.black.withOpacity(.8),
-                                  offset: const Offset(0, 1),
-                                  blurRadius: 0.8,
-                                ),
-                                BoxShadow(
-                                  color: Colors.black.withOpacity(.35),
-                                  offset: const Offset(1, 0),
-                                  blurRadius: 1,
-                                ),
-                              ]),
-                      child: Center(
-                        child: Image.asset(
-                          iconReaction!.iconAsset,
-                          width: widget.sizeIconReaction ?? 13.6,
-                          fit: BoxFit.cover,
+                    child: SlideTransition(
+                      position: Tween<Offset>(
+                        begin: const Offset(.25, -1),
+                        end: Offset.zero,
+                      ).animate(CurvedAnimation(
+                        parent: _controller,
+                        curve: Curves.bounceOut,
+                      )),
+                      child: Container(
+                        padding: widget.paddingIconReaction ??
+                            const EdgeInsets.all(2.4),
+                        decoration: widget.iconReactionDecoration ??
+                            BoxDecoration(
+                                color: Colors.white,
+                                shape: BoxShape.circle,
+                                boxShadow: [
+                                  BoxShadow(
+                                    color: Colors.black.withOpacity(.8),
+                                    offset: const Offset(0, 1),
+                                    blurRadius: 0.8,
+                                  ),
+                                  BoxShadow(
+                                    color: Colors.black.withOpacity(.35),
+                                    offset: const Offset(1, 0),
+                                    blurRadius: 1,
+                                  ),
+                                ]),
+                        child: Center(
+                          child: Image.asset(
+                            iconReaction!.iconAsset,
+                            width: widget.sizeIconReaction ?? 13.6,
+                            fit: BoxFit.cover,
+                          ),
                         ),
                       ),
                     ),
