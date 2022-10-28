@@ -127,7 +127,6 @@ class _ReactionMessageState extends State<ReactionMessage>
   @override
   Widget build(BuildContext context) {
     return Container(
-      width: MediaQuery.of(context).size.width,
       padding:
           isReaction ? const EdgeInsets.only(bottom: 10.8) : EdgeInsets.zero,
       child: Stack(
