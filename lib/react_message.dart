@@ -86,6 +86,7 @@ class _ReactionMessageState extends State<ReactionMessage>
       iconReaction = IconReactionModel(
           id: 1, iconAsset: widget.currentIconReaction1!, page: 0);
       isReaction = true;
+      _controller.forward();
     } else {
       iconReaction = null;
     }
